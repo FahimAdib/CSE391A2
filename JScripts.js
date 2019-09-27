@@ -3,24 +3,31 @@ function button1() {
     document.getElementById("text").style.color = "white";
     document.getElementById("author").style.color = "white";
     document.getElementById("quotes").style.borderColor = "#262626";
+    document.getElementById("text").style.fontFamily = "Righteous";
+    document.getElementById("text").style.fontWeight = "lighter";
 }
 function button2() {
     document.getElementById("quotes").style.backgroundColor = "#ff6666";
     document.getElementById("text").style.color = "white";
     document.getElementById("author").style.color = "white";
     document.getElementById("quotes").style.borderColor = "#262626";
+    document.getElementById("text").style.fontFamily = "Righteous";
+    document.getElementById("text").style.fontWeight = "lighter";
 }
 function button3() {
     document.getElementById("quotes").style.backgroundColor = "#67e4a6";
     document.getElementById("text").style.color = "black";
     document.getElementById("author").style.color = "black";
     document.getElementById("quotes").style.borderColor = "black";
+    document.getElementById("text").style.fontFamily = "Roboto Mono";
+
 }
 function button4() {
     document.getElementById("quotes").style.backgroundColor = "#e467a6";
     document.getElementById("text").style.color = "black";
     document.getElementById("author").style.color = "black";
     document.getElementById("quotes").style.borderColor = "black";
+    document.getElementById("text").style.fontFamily = "Roboto Mono";
 }
 
 var quotes = ["Great actions are not always true sons of great and mighty resolutions.", "Happy is the bride that the sun shines on.", "It is possible to have too much of a good thing.", "Lightning never strikes the same place twice."];
@@ -81,4 +88,68 @@ function findReverse() {
     document.getElementById("reverse").innerHTML = inputNumbersArr;
 }
 
+function clearAll() {
+    document.getElementById("magic").value = null;
+}
 
+function capitalize() {
+    var resU = document.getElementById("magic").value.toUpperCase();
+    var resL = document.getElementById("magic").value.toLowerCase();
+    if (document.getElementById("caps").value == "OFF") {
+        document.getElementById("caps").value = "ON";
+        document.getElementById("magic").value = resU;
+    }
+
+    else if (document.getElementById("caps").value == "ON") {
+        document.getElementById("caps").value = "OFF";
+        document.getElementById("magic").value = resL;
+    }
+
+}
+
+var allLinesArr;
+function sortLines() {
+    var allLines = document.getElementById("magic").value;
+    allLinesArr = allLines.split('\n');
+    allLinesArr.sort();
+    document.getElementById("magic").value = allLinesArr.join("\r\n");
+
+}
+
+function reverseLines() {
+    var allLines = document.getElementById("magic").value;
+    allLinesArr = allLines.split('\n');
+    allLinesArr.reverse();
+    document.getElementById("magic").value = allLinesArr.join("\r\n");
+
+}
+
+function stripBlank() {
+    var allLines = document.getElementById("magic").value;
+    allLinesArr = allLines.split("\n");
+    var arr = allLinesArr.filter(Boolean);
+    array = arr.map(el => el.trim());
+    document.getElementById("magic").value = array.join("\r\n");
+
+}
+
+function addLineNumbers() {
+
+    var allLines = document.getElementById("magic").value;
+    allLinesArr = allLines.split('\n');
+    for (var j = 0; j < allLinesArr.length; j++) {
+        allLinesArr[j] = j + 1 + ". " + allLinesArr[j];
+    }
+    document.getElementById("magic").value = allLinesArr.join("\r\n");
+
+}
+
+function shuffle() {
+    var allLines = document.getElementById("magic").value;
+    allLinesArr = allLines.split('\n');
+    for (let i = allLinesArr.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [allLinesArr[i], allLinesArr[j]] = [allLinesArr[j], allLinesArr[i]];
+    }
+    document.getElementById("magic").value = allLinesArr.join("\r\n");
+}
