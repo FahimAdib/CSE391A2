@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 
-<html>
+<html oncontextmenu="return false">
 
-<head>
+<head oncontextmenu="return false">
     <title>CSE391 Assignment 2</title>
     <link rel="stylesheet" href="main.css">
     <link rel="icon" href="Images/page_logo.png">
@@ -12,7 +12,7 @@
 </head>
 
 
-<body oncontextmenu="return false" onload="fetchQuote(quotes, author)">
+<body oncontextmenu="return false" onload="fetchQuote(quotes, author),addNumbers()">
 
 
     <h1 id="header">CSE391 Assignment 2</h1>
@@ -36,9 +36,8 @@
 
     <div class="container-math">
         <h1 class="item-header">Find Min,Max,Avg,Sum and Reverse.</h1>
-        <form action="#" onSubmit="addNumbers()"> <span id="math-input">Input Series of Number:
+        <form action="#"> <span id="math-input">Input Series of Number:
             </span><input id="math-input-numbers" type="text">
-            <!--           <button onclick="addNumbers()" type="button" id="math-button">Go</button> -->
             <div id="max-text">Max: <span id="max">0</span></div>
 
             <div id="min-text">Min: <span id="min">0</span></div>

@@ -56,36 +56,60 @@ function getInputValue() {
     }
 }
 var inputNumbersArr;
+var empty;
 function addNumbers() {
     var inputNumbers = document.getElementById("math-input-numbers").value;
     inputNumbersArr = inputNumbers.split(',');
+    clearEmpty();
     findMax();
     findMin();
     findSum();
     findReverse();
+    setTimeout(addNumbers, 500);
+
+}
+var arrNonEmpty;
+function clearEmpty() {
+    var allLines = document.getElementById("math-input-numbers").value;
+    allLinesArr = allLines.split(',');
+    arrNonEmpty = allLinesArr.filter(Boolean);
+
+
 }
 
 function findMax() {
-    var result = Math.max.apply(null, inputNumbersArr);
+    var result = Math.max.apply(null, arrNonEmpty);
+    if (result == -Infinity) {
+        result = 0;
+    }
     document.getElementById("max").innerHTML = result;
 }
 function findMin() {
-    var result = Math.min.apply(null, inputNumbersArr);
+    var result = Math.min.apply(null, arrNonEmpty);
+    if (result == Infinity) {
+        result = 0;
+    }
     document.getElementById("min").innerHTML = result;
 }
 function findSum() {
     var sum = 0;
-    for (var i = 0; i < inputNumbersArr.length; i++) {
-        sum += parseFloat(inputNumbersArr[i]);
+    for (var i = 0; i < arrNonEmpty.length; i++) {
+        sum += parseFloat(arrNonEmpty[i]);
     }
     document.getElementById("sum").innerHTML = sum;
-    var avg = sum / inputNumbersArr.length;
+
+    var avg = sum / arrNonEmpty.length;
+    if (isNaN(avg)) {
+        avg = 0;
+    }
     document.getElementById("avg").innerHTML = avg;
 }
 
 function findReverse() {
-    inputNumbersArr.reverse();
-    document.getElementById("reverse").innerHTML = inputNumbersArr;
+
+
+    arrNonEmpty.reverse();
+    document.getElementById("reverse").innerHTML = arrNonEmpty;
 }
 
 function clearAll() {
@@ -119,10 +143,15 @@ function sortLines() {
 function reverseLines() {
     var allLines = document.getElementById("magic").value;
     allLinesArr = allLines.split('\n');
-    allLinesArr.reverse();
+    for (var j = 0; j < allLinesArr.length; j++) {
+        var splitArr = allLinesArr[j].split(" ").reverse().join(" ");
+        allLinesArr[j] = splitArr;
+    }
     document.getElementById("magic").value = allLinesArr.join("\r\n");
 
 }
+
+allLinesArr.reverse();
 
 function stripBlank() {
     var allLines = document.getElementById("magic").value;
@@ -153,3 +182,4 @@ function shuffle() {
     }
     document.getElementById("magic").value = allLinesArr.join("\r\n");
 }
+
